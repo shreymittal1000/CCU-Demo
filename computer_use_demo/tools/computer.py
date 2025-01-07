@@ -113,14 +113,20 @@ class ComputerTool(BaseAnthropicTool):
                 ScalingSource.API, coordinate[0], coordinate[1]
             )
 
+            # if action == "mouse_move":
+            #     return await self.shell(f"{self.xdotool} mousemove --sync {x} {y}")
+            #     return ToolResult(output=f"Mouse moved successfully to X={x}, Y={y}")
+            # elif action == "left_click_drag":
+            #     await asyncio.to_thread(pyautogui.mouseDown)
+            #     await asyncio.to_thread(pyautogui.moveTo, x, y)
+            #     await asyncio.to_thread(pyautogui.mouseUp)
+            #     return ToolResult(output="Mouse drag action completed.")
             if action == "mouse_move":
-                await asyncio.to_thread(pyautogui.moveTo, x, y)
-                return ToolResult(output=f"Mouse moved successfully to X={x}, Y={y}")
+                return await self.shell(f"{self.xdotool} mousemove --sync {x} {y}")
             elif action == "left_click_drag":
-                await asyncio.to_thread(pyautogui.mouseDown)
-                await asyncio.to_thread(pyautogui.moveTo, x, y)
-                await asyncio.to_thread(pyautogui.mouseUp)
-                return ToolResult(output="Mouse drag action completed.")
+                return await self.shell(
+                    f"{self.xdotool} mousedown 1 mousemove --sync {x} {y} mouseup 1"
+                )
 
         if action in ("key", "type"):
             if text is None:

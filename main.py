@@ -3,6 +3,7 @@ import os
 import sys
 import json
 import base64
+from dotenv import load_dotenv
 
 from computer_use_demo.loop import sampling_loop, APIProvider
 from computer_use_demo.tools import ToolResult
@@ -11,15 +12,19 @@ from anthropic import APIResponse
 
 
 async def main():
+    # Load the .env file
+    load_dotenv(".env")
+
     # Set up your Anthropic API key and model
     api_key = os.getenv("ANTHROPIC_API_KEY")
+    print(f"API Key: {api_key}")
     provider = APIProvider.ANTHROPIC
 
     # Check if the instruction is provided via command line arguments
     if len(sys.argv) > 1:
         instruction = " ".join(sys.argv[1:])
     else:
-        instruction = "Search for the best computer for programming using DuckDuckGo on Firefox"
+        instruction = "Search for the best computer for programming using DuckDuckGo on Firefox. Firefox is already installed so do not install it again."
 
     print(
         f"Starting Claude 'Computer Use'.\nPress ctrl+c to stop.\nInstructions provided: '{instruction}'"
