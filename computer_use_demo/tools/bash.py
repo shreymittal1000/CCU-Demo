@@ -1,4 +1,5 @@
 import asyncio
+import async_timeout
 import os
 from typing import ClassVar, Literal
 
@@ -73,7 +74,7 @@ class _BashSession:
 
         # read output from the process, until the sentinel is found
         try:
-            async with asyncio.timeout(self._timeout):
+            async with async_timeout.timeout(self._timeout):
                 while True:
                     await asyncio.sleep(self._output_delay)
                     # if we read directly from stdout/stderr, it will wait forever for

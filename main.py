@@ -19,7 +19,7 @@ async def main():
     if len(sys.argv) > 1:
         instruction = " ".join(sys.argv[1:])
     else:
-        instruction = "Save an image of a cat to the desktop."
+        instruction = "Search for the best computer for programming using DuckDuckGo on Firefox"
 
     print(
         f"Starting Claude 'Computer Use'.\nPress ctrl+c to stop.\nInstructions provided: '{instruction}'"

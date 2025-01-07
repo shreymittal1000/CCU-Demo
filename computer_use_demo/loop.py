@@ -48,7 +48,6 @@ PROVIDER_TO_DEFAULT_MODEL_NAME: dict[APIProvider, str] = {
 SYSTEM_PROMPT = f"""<SYSTEM_CAPABILITY>
 * You are utilizing a MacOS computer using {platform.machine()} architecture with internet access.
 * You can use the bash tool to execute commands in the terminal.
-* To open applications, you can use the 'open' command in the bash tool. For example, 'open -a Firefox' to open the Firefox browser.
 * When using your bash tool with commands that are expected to output very large quantities of text, redirect the output into a temporary file and use `str_replace_editor` or `grep -n -B <lines before> -A <lines after> <query> <filename>` to inspect the output.
 * When viewing a page, it can be helpful to zoom out so that you can see everything on the page. Alternatively, ensure you scroll down to see everything before deciding something isn't available.
 * When using your computer function calls, they may take a while to run and send back to you. Where possible and feasible, try to chain multiple of these calls into one function call request.
