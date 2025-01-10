@@ -1,0 +1,8 @@
+screenshots/
+.env
+Dockerfile
+
+*.tmp
+*.swp
+coverage
+vendor

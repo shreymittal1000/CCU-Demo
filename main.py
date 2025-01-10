@@ -15,14 +15,6 @@ async def main():
     # Load the .env file
     load_dotenv(".env")
 
-    # RSA keys as constants
-    RSA_PUBLIC_KEY = "dummy-pubkey"
-    RSA_PRIVATE_KEY = "dummy-privkey"
-    
-    # Print the RSA keys
-    print("RSA Public Key:", RSA_PUBLIC_KEY)
-    print("RSA Private Key:", RSA_PRIVATE_KEY)
-
     # Set up your Anthropic API key and model
     api_key = os.getenv("ANTHROPIC_API_KEY")
     print(f"API Key: {api_key}")

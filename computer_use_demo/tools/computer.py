@@ -3,7 +3,7 @@ import base64
 import os
 import shlex
 import shutil
-from enum import Enum
+from enum import StrEnum
 from pathlib import Path
 from typing import Literal, TypedDict
 from uuid import uuid4
@@ -46,7 +46,7 @@ MAX_SCALING_TARGETS: dict[str, Resolution] = {
 }
 
 
-class ScalingSource(Enum):
+class ScalingSource(StrEnum):
     COMPUTER = "computer"
     API = "api"
 
@@ -127,7 +127,7 @@ class ComputerTool(BaseAnthropicTool):
                 ScalingSource.API, coordinate[0], coordinate[1]
             )
 
-            await self.shell(f'{self.xdotool} windowfocus $({self.xdotool} search --name "root" | head -n 1)')
+            await self.shell(f'{self.xdotool} windowfocus $(xdpyinfo | grep "root window"')
 
             if action == "mouse_move":
                 return await self.shell(f"{self.xdotool} mousemove {x} {y}")

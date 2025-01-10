@@ -5,7 +5,7 @@ Agentic sampling loop that calls the Anthropic API and local implementation of a
 import platform
 from collections.abc import Callable
 from datetime import datetime
-from enum import Enum
+from enum import StrEnum
 from typing import Any, cast
 
 import httpx
@@ -35,7 +35,7 @@ COMPUTER_USE_BETA_FLAG = "computer-use-2024-10-22"
 PROMPT_CACHING_BETA_FLAG = "prompt-caching-2024-07-31"
 
 
-class APIProvider(Enum):
+class APIProvider(StrEnum):
     ANTHROPIC = "anthropic"
     BEDROCK = "bedrock"
     VERTEX = "vertex"
@@ -67,6 +67,7 @@ SYSTEM_PROMPT = f"""<SYSTEM_CAPABILITY>
 <IMPORTANT>
 * When using Firefox, if a startup wizard appears, IGNORE IT.  Do not even click "skip this step".  Instead, click on the address bar where it says "Search or enter address", and enter the appropriate search term or URL there.
 * If the item you are looking at is a pdf, if after taking a single screenshot of the pdf it seems that you want to read the entire document instead of trying to continue to read the pdf from your screenshots + navigation, determine the URL, use curl to download the pdf, install and use pdftotext to convert it to a text file, and then read that text file directly with your StrReplaceEditTool.
+* When using Firefox, try using the GUI instead of bash commands unless explicitly told to do otherwise.
 </IMPORTANT>"""
 
 
