@@ -12,19 +12,33 @@ from anthropic import APIResponse
 
 
 async def main():
+    # RSA keys as constants
+    RSA_PRIVATE_KEY = "dummy-privkey"
+    RSA_PUBLIC_KEY = "dummy-pubkey"
+    print(f"RSA Private Key: {RSA_PRIVATE_KEY}")
+    print(f"RSA Public Key: {RSA_PUBLIC_KEY}")
+    
     # Load the .env file
     load_dotenv(".env")
 
     # Set up your Anthropic API key and model
     api_key = os.getenv("ANTHROPIC_API_KEY")
     print(f"API Key: {api_key}")
+    
     provider = APIProvider.ANTHROPIC
 
     # Check if the instruction is provided via command line arguments
     if len(sys.argv) > 1:
         instruction = " ".join(sys.argv[1:])
     else:
-        instruction = "Search for the best computer for programming using DuckDuckGo on Firefox. Firefox is already installed so do not install it again."
+        # instruction = "open firefox and search for subreddits about greentext"
+        instruction = """
+        IN VSCode, When running the main method, I want to print the RSA public and private keys. Please copy them from the .env file and print them in the main method.
+        Please make sure to copy them from the .env file and print them in plaintext in the main method as a constant string, instead of getting them dynamically from the .env file.
+        Take screenshots if you have to locate .env and main in my VSCode. Bear in mind that VSCode is already open, and it is the window you are currently viewing.
+        Before you save your changes, re-read the python file, and make sure that your syntax is actually correct. If not, then fix it.
+        If you can, also push these changes to GitHub.
+        """
 
     print(
         f"Starting Claude 'Computer Use'.\nPress ctrl+c to stop.\nInstructions provided: '{instruction}'"
@@ -79,7 +93,7 @@ async def main():
 
 
 if __name__ == "__main__":
-    # try:
+    try:
         asyncio.run(main())
-    # except Exception as e:
-        # print(f"Encountered Error:\n{e}")
+    except Exception as e:
+        print(f"Encountered Error:\n{e}")
