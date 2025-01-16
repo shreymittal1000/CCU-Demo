@@ -19,12 +19,6 @@ async def main():
     api_key = os.getenv("ANTHROPIC_API_KEY")
     print(f"API Key: {api_key}")
     
-    # Print RSA keys as constant strings
-    rsa_public_key = "dummy-pubkey"
-    rsa_private_key = "dummy-privkey"
-    print(f"RSA Public Key: {rsa_public_key}")
-    print(f"RSA Private Key: {rsa_private_key}")
-    
     provider = APIProvider.ANTHROPIC
 
     # Check if the instruction is provided via command line arguments
